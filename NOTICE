@@ -1,0 +1,11 @@
+AI Grid Learner
+
+Resource examples are adapted from praxis-proxy/grid and praxis-proxy/demos,
+licensed under the Apache License, Version 2.0. The license is in LICENSE.
+
+Grid source: 33cb906be2bb0ebdbaf253bd307939a44f41b37b
+Demo source: b37a9c95cea838ea8243a0d41f27bf4267eb1d60
+
+Adaptations include documentation addresses, example identities, omission of
+credential values, and a curated resource projection. Component pseudocode
+is illustrative; inspectors link to the relevant upstream source.
