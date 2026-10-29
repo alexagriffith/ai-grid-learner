@@ -2,11 +2,11 @@
   "schema_version": 1,
   "scope": "Anonymized example learner only",
   "files": {
-    "index.html": "11bc5e7655cb6b9e7680a2537147fbf1a4d66954f652debaca7843b352ef21c4",
-    "learner.css": "99dabda511e3462209de089de3032ac6ec63b4780bb531f9a37cfde996f2fab6",
+    "index.html": "c56e703642a03df855c556a2963c4722838937423ea5eb25877f07c4fc8e8367",
+    "learner.css": "c04115e63732f6dc929a484d3a6fd1108e1a0c24a48f05107f4e31652c5afe6b",
     "demo-reference.js": "5771d78026280f723287b10497f4500c8da93abc81185363732ec0402f09befd",
-    "lessons.js": "8fd02e8d799b17aa16a6f3902d1dce8d603aaba989276f857b4ae79b4de67236",
-    "learner.js": "436ceee216d782408d97053385d2b46ed6da6fbdbde2e77ef0f03a0593395bfb",
-    "standalone.html": "d0e491eb7f85fa5e300795e24daf7330a5a903bca074b9490751e72fec133617"
+    "lessons.js": "f6c59d739283f88c5f6eb46f1fcdb263fcaecbf87a21df5492b671b181b1077e",
+    "learner.js": "6483390b4fb52e315f6f697e846b1d2d147f49a47ad47b1763a9150ee7083deb",
+    "standalone.html": "76a7d547181327e3e2558362d5e78736ec2ba1ba52ba4e8738c3192c210d0183"
   }
 }
