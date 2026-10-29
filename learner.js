@@ -30,7 +30,7 @@
    else if(layout==='shared')box(s,'entry',10,10,360,275,'Gateway cluster');
    else box(s,'entry',10,145,360,same?485:130,entry.cluster);
    if(!same)box(s,'provider',10,340,360,290,provider.cluster,true);
-   const l=node(s,'litellm','front',85,65,210,56,'LiteLLM','Caller access',['basic','shared'].includes(layout)?'entry':'');
+   const l=node(s,'litellm','front',85,65,210,56,'AI gateway','LiteLLM (example)',['basic','shared'].includes(layout)?'entry':'');
    const c=node(s,'consumer',entry.site,85,185,210,56,entry.label,'Grid identity: '+entry.identity,'entry');
    const p=node(s,'provider',provider.site,80,375,220,56,provider.label,'Grid identity: '+provider.identity,same?'entry':'provider');
    const serving=node(s,'serving',provider.site,80,505,220,56,'llm-d serving','Local server selection',same?'entry':'provider');
@@ -39,7 +39,7 @@
    return s;
   }
   if(layout==='entries'){
-   const s=newScene(940,655),l=node(s,'litellm','front',370,20,200,56,'LiteLLM','Caller access'),consumers={};
+   const s=newScene(940,655),l=node(s,'litellm','front',370,20,200,56,'AI gateway','LiteLLM (example)'),consumers={};
    for(const [index,item] of model.entries.entries()){
     const c=consumers[item.key]=node(s,'consumer',item.site,15+index*185,160,170,56,item.label,'Entry gateway');
     connect(s,l,c,[port(l,'bottom'),[470,110],[c.x+85,110],port(c,'top')],'request',item.key===entry.key);
@@ -53,7 +53,7 @@
   }
   if(layout==='basic'){
    const s=newScene(940,410);box(s,'entry',10,20,920,365,'One cluster');
-   const l=node(s,'litellm','front',40,100,180,56,'LiteLLM','Caller access','entry');
+   const l=node(s,'litellm','front',40,100,180,56,'AI gateway','LiteLLM (example)','entry');
    const c=node(s,'consumer','a',280,100,220,56,'Consumer gateway','Provider selection','entry');
    const p=node(s,'provider','a',590,100,220,56,'Provider gateway','Serving access','entry');
    const serving=node(s,'serving','a',590,245,220,56,'llm-d serving','Local server selection','entry');
@@ -62,7 +62,7 @@
    direct(s,l,c);direct(s,c,p);direct(s,p,serving,'bottom','top');return s;
   }
   if(layout==='combined'){
-   const s=newScene(940,635),l=node(s,'litellm','front',370,20,200,56,'LiteLLM','Configured entry choices');
+   const s=newScene(940,635),l=node(s,'litellm','front',370,20,200,56,'AI gateway','LiteLLM (example)');
    const consumers={},providers={};
    for(const [i,site] of ['a','b'].entries()){
     const x=15+i*475,id='site-'+site;box(s,id,x,150,440,460,'Cluster '+site.toUpperCase()+' · '+id);
@@ -79,7 +79,7 @@
   const s=newScene(940,635),shared=layout==='shared';
   if(shared)box(s,'entry',10,20,920,225,'Gateway cluster');
   else {box(s,'entry',245,20,265,225,entry.cluster+' · '+entry.identity);box(s,'enrollment',540,20,390,225,'Shared Grid enrollment');}
-  const l=node(s,'litellm','front',40,95,165,56,'LiteLLM','Caller access',shared?'entry':'');
+  const l=node(s,'litellm','front',40,95,165,56,'AI gateway','LiteLLM (example)',shared?'entry':'');
   const c=node(s,'consumer',entry.site,shared?260:272,95,210,56,entry.label,'Grid identity: '+entry.identity,'entry');
   node(s,'access-db','front',40,185,165,36,'Access database','',shared?'entry':'');
   if(shared){node(s,'operator',entry.site,550,80,340,50,'Grid control + edge identity','Configuration and provider signals','entry');node(s,'enrollment','edge',550,165,340,44,'Shared enrollment','Certificate issuance','entry');}
@@ -129,7 +129,7 @@
   if(layout==='shared'||layout==='entries'){
    const shared=layout==='shared',base=narrow?430:340,s=newScene(narrow?380:940,narrow?2460:910),consumers={},providers={};
    if(shared)box(s,'entry',10,narrow?10:20,narrow?360:920,narrow?280:230,'Gateway cluster');
-   const l=node(s,'litellm','front',narrow?85:370,shared?65:20,narrow?210:200,56,'LiteLLM','Caller access',shared?'entry':'');
+   const l=node(s,'litellm','front',narrow?85:370,shared?65:20,narrow?210:200,56,'AI gateway','LiteLLM (example)',shared?'entry':'');
    for(const [index,item] of model.entries.entries()){
     const x=shared?(narrow?80:360):(narrow?25+(index%2)*180:15+index*185),y=shared?(narrow?185:160):(narrow?130+Math.floor(index/2)*80:155),w=shared?220:(narrow?150:170);
     const c=consumers[item.key]=node(s,'consumer',item.site,x,y,w,56,item.label,'Entry gateway',shared?'entry':'');
@@ -152,7 +152,7 @@
    return s;
   }
   if(layout==='combined'){
-   const s=newScene(narrow?380:940,narrow?1470:790),consumers={},providers={},l=node(s,'litellm','front',narrow?85:370,20,narrow?210:200,56,'LiteLLM','Caller access');
+   const s=newScene(narrow?380:940,narrow?1470:790),consumers={},providers={},l=node(s,'litellm','front',narrow?85:370,20,narrow?210:200,56,'AI gateway','LiteLLM (example)');
    for(const [index,site] of ['a','b'].entries()){
     const x=narrow?10:15+index*475,y=narrow?150+index*670:150,w=narrow?360:440,id='site-'+site;box(s,id,x,y,w,narrow?610:610,'Cluster '+site.toUpperCase()+' · '+id,true);
     const c=consumers[site]=node(s,'consumer',site,narrow?80:x+110,y+60,220,56,'Consumer '+site.toUpperCase(),'Entry gateway',id);
@@ -176,7 +176,7 @@
    const s=newScene(380,760);
    if(layout==='basic')box(s,'entry',10,10,360,725,'One cluster');else if(layout==='shared')box(s,'entry',10,10,360,270,'Gateway cluster');else box(s,'entry',10,145,360,same?590:135,entry.cluster);
    if(!same)box(s,'provider',10,305,360,430,provider.cluster,true);
-   const l=node(s,'litellm','front',85,65,210,56,'LiteLLM','Caller access',['basic','shared'].includes(layout)?'entry':'');
+   const l=node(s,'litellm','front',85,65,210,56,'AI gateway','LiteLLM (example)',['basic','shared'].includes(layout)?'entry':'');
    const c=node(s,'consumer',entry.site,85,185,210,56,'Consumer gateway','Grid identity: '+entry.identity,'entry');
    const p=node(s,'provider',provider.site,80,350,220,56,'Provider gateway','Grid identity: '+provider.identity,same?'entry':'provider');
    const e=node(s,'envoy',provider.site,25,495,170,56,'Envoy','Forward selected request',same?'entry':'provider');
@@ -188,7 +188,7 @@
   const s=newScene(1000,445);
   if(layout==='basic')box(s,'entry',5,20,990,360,'One cluster');else if(layout==='shared')box(s,'entry',5,205,395,175,'Gateway cluster',true);else box(s,'entry',195,same?20:205,same?800:200,same?360:175,entry.cluster+' · '+entry.identity,true);
   if(!same)box(s,'provider',425,20,570,360,provider.cluster+' · '+provider.identity);
-  const l=node(s,'litellm','front',20,250,160,58,'LiteLLM','Caller access',['basic','shared'].includes(layout)?'entry':'');
+  const l=node(s,'litellm','front',20,250,160,58,'AI gateway','LiteLLM (example)',['basic','shared'].includes(layout)?'entry':'');
   const c=node(s,'consumer',entry.site,210,250,170,58,'Consumer','Grid identity: '+entry.identity,'entry');
   const p=node(s,'provider',provider.site,440,250,170,58,'Provider gateway','Grid identity: '+provider.identity,same?'entry':'provider');
   const e=node(s,'envoy',provider.site,650,250,140,58,'Envoy','Forward',same?'entry':'provider');
@@ -230,7 +230,7 @@
  function chip(role,site,label){return `<button data-kind="${componentKind(role)}" data-component="${escape(role)}" data-site="${escape(site)}" aria-pressed="${state.selected.role===role&&state.selected.site===site}">${escape(label)}</button>`;}
  function components(){
   const {entry,model}=chosen(),section=(title,body)=>`<section class="component-section"><h2>${title}</h2><div class="chips">${body}</div></section>`,cluster=(title,body)=>`<fieldset><legend>${escape(title)}</legend>${body}</fieldset>`;
-  const caller=chip('litellm','front','LiteLLM')+chip('access-db','front','Access database');
+  const caller=chip('litellm','front','AI gateway')+chip('access-db','front','LiteLLM database');
   const control=site=>chip('operator',site,'Grid operator')+chip('identity',site,'Site identity')+chip('config',site,'Serving configuration');
   const serving=site=>chip('provider',site,'Provider gateway')+chip('envoy',site,'Envoy')+chip('picker',site,'Endpoint Picker')+chip('sim',site,'Simulators');
   const types=site=>chip('gridsite',site,'GridSite')+chip('inferenceprovider',site,'InferenceProvider')+chip('inferencepool',site,'InferencePool');
@@ -266,7 +266,7 @@
   content.querySelectorAll('[data-resource]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.resource===key)));content.querySelectorAll('[data-crd]').forEach(el=>el.setAttribute('aria-pressed','false'));if(focus)focusInspector();
  }
  function bindResources(){content.querySelectorAll('[data-resource]').forEach(el=>el.onclick=()=>showResource(el.dataset.resource));content.querySelectorAll('[data-crd]').forEach(el=>el.onclick=()=>{const [letter,kind]=el.dataset.crd.split('|'),crd=reference.sites[letter].crds.find(x=>x.kind===kind),panel=q('#inspector');panel.innerHTML=`<div class="resource-heading"><span class="kind-badge">API type</span><h2>${escape(kind)}</h2></div>${facts([['API type',crd.name],['Scope',crd.scope],['Group',crd.group]])}${lesson(kind.toLowerCase(),letter).replace(/<h2>[^<]*<\/h2>/,'').replace(/<tr><th scope="row">Scope<\/th><td>[^<]*<\/td><\/tr>/,'')}`;content.querySelectorAll('[data-resource]').forEach(item=>item.setAttribute('aria-pressed','false'));content.querySelectorAll('[data-crd]').forEach(item=>item.setAttribute('aria-pressed',String(item===el)));if(window.publicLessons)window.publicLessons.bind(panel);focusInspector();});showResource(state.resourceKey,false);}
- function request(rolesOnly=false){const {entry,provider}=chosen(),texts=['','LiteLLM validates the caller key and configured model access.','The '+entry.identity+' consumer selects '+provider.identity+' using its provider snapshot.','The provider verifies the incoming '+entry.identity+' Grid identity and peer access.','Envoy exchanges the request body and headers with the Endpoint Picker, then receives a server address.','Envoy forwards to the selected simulator, which produces the completion.','The response returns through Envoy, the provider, the consumer and LiteLLM.'];const scene=requestScene(state.layout,entry.key,provider.key,innerWidth<700);return `<div class="explorer"><section class="canvas">${sceneSVG(scene,{step:rolesOnly?0:state.step,response:state.step===6&&!rolesOnly})}<div class="diagram-legend"><span><i></i>Inference forwarding</span><span><i class="control-swatch"></i>Picker consultation</span>${state.layout!=='basic'?'<span><i class="alternative-swatch"></i>Other permitted choices</span>':''}</div></section><aside class="inspector">${rolesOnly?'':`<div class="controls"><button id="requestReset">Reset</button><button id="requestBack" ${state.step===0?'disabled':''}>Back</button><button id="requestNext" ${state.step===6?'disabled':''}>${state.step===0?'Follow request →':'Next →'}</button></div>${state.step?`<div class="step-count">${state.step} / 6</div><p class="request-step">${escape(texts[state.step])}</p>`:''}`}<section id="inspector"></section></aside></div>`;}
+ function request(rolesOnly=false){const {entry,provider}=chosen(),texts=['','The AI gateway validates caller access; LiteLLM is used in this example.','The '+entry.identity+' consumer selects '+provider.identity+' using its provider snapshot.','The provider verifies the incoming '+entry.identity+' Grid identity and peer access.','Envoy exchanges the request body and headers with the Endpoint Picker, then receives a server address.','Envoy forwards to the selected simulator, which produces the completion.','The response returns through Envoy, the provider, the consumer and the AI gateway.'];const scene=requestScene(state.layout,entry.key,provider.key,innerWidth<700);return `<div class="explorer"><section class="canvas">${sceneSVG(scene,{step:rolesOnly?0:state.step,response:state.step===6&&!rolesOnly})}<div class="diagram-legend"><span><i></i>Inference forwarding</span><span><i class="control-swatch"></i>Picker consultation</span>${state.layout!=='basic'?'<span><i class="alternative-swatch"></i>Other permitted choices</span>':''}</div></section><aside class="inspector">${rolesOnly?'':`<div class="controls"><button id="requestReset">Reset</button><button id="requestBack" ${state.step===0?'disabled':''}>Back</button><button id="requestNext" ${state.step===6?'disabled':''}>${state.step===0?'Follow request →':'Next →'}</button></div>${state.step?`<div class="step-count">${state.step} / 6</div><p class="request-step">${escape(texts[state.step])}</p>`:''}`}<section id="inspector"></section></aside></div>`;}
  function stepTo(next){state.step=Math.max(0,Math.min(6,next));const {entry,provider}=chosen(),roles=['client','litellm','consumer','provider','envoy','sim','sim'];state.selected={role:roles[state.step],site:state.step===1?'front':state.step===2?entry.site:provider.site};render();const announcement=q('#learner-status');if(announcement)announcement.textContent=state.step?'Step '+state.step+' of 6. '+q('.request-step').textContent:'Request walkthrough reset.';}
  function render(){
   const announcement=q('#learner-status');if(announcement)announcement.textContent='';

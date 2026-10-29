@@ -2,11 +2,11 @@
   "schema_version": 1,
   "scope": "Anonymized example learner only",
   "files": {
-    "index.html": "1676e87aafa68a306611b98bba3217cb9ef4221aa906e8e48b765050e794a87f",
+    "index.html": "d44e4f4abd50117e8faa7d0eb0adfc32f5dcf734d8f29ad83c18b35ce57d822f",
     "learner.css": "c04115e63732f6dc929a484d3a6fd1108e1a0c24a48f05107f4e31652c5afe6b",
     "demo-reference.js": "5771d78026280f723287b10497f4500c8da93abc81185363732ec0402f09befd",
-    "lessons.js": "f6c59d739283f88c5f6eb46f1fcdb263fcaecbf87a21df5492b671b181b1077e",
-    "learner.js": "6483390b4fb52e315f6f697e846b1d2d147f49a47ad47b1763a9150ee7083deb",
-    "standalone.html": "76a7d547181327e3e2558362d5e78736ec2ba1ba52ba4e8738c3192c210d0183"
+    "lessons.js": "e185d8e922193f9f46c55924513a74a52288c035eb8bf242fd9031683fe6a605",
+    "learner.js": "ead324ed6a46b7b79e8eb8d495d77e1cccbd748555d0ba8642eb21dee6a1016c",
+    "standalone.html": "33244789d5a3a756afebcc160f2c95bd162525b0e2cceb953e90a193a9d4aa74"
   }
 }
